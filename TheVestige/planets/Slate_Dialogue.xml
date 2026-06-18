@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DialogueTree>
+	<NameField>Slate</NameField>
+	<DialogueNode>
+		<Name>Scientist5</Name>
+		<DialogueOptionsList>
+			<DialogueOption>
+				<RequiredLogCondition>TV_REMNANT_SHARD_DISTORTED_SIGNAL</RequiredLogCondition>
+				<Text>Do you know anything about this strange quantum rock?</Text>
+				<DialogueTarget>TV_RandomShard</DialogueTarget>
+			</DialogueOption>
+		</DialogueOptionsList>
+	</DialogueNode>
+	<DialogueNode>
+		<Name>TV_RandomShard</Name>
+		<Dialogue>
+			<Page>AAAHHHHHHH!!</Page>
+			<Page>I'm scared of rocks. Especially quantum ones.</Page>
+		</Dialogue>
+		<RevealFacts>
+			<FactID>TV_POOR_SLATE_SCARED</FactID>
+		</RevealFacts>
+		<DialogueOptionsList>
+			<DialogueOption>
+				<Text>You live on a rocky planet though?</Text>
+			</DialogueOption>
+			<DialogueOption>
+				<Text>Why?</Text>
+			</DialogueOption>
+			<DialogueOption>
+				<Text>That's strange considering you work with polished rocks in your free time.</Text>
+			</DialogueOption>
+		</DialogueOptionsList>
+	</DialogueNode>
+</DialogueTree>
