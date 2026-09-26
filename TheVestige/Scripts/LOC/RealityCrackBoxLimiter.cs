@@ -1,19 +1,19 @@
 using UnityEngine;
 
-namespace TheVestige.Scripts;
+namespace TheVestige.Scripts.LOC;
 
 public class RealityCrackBoxLimiter : MonoBehaviour
 {
-    public Renderer[] voidCrackRenderers;
+    [SerializeField] private Renderer[] voidCrackRenderers;
 
     private static readonly int WorldToBoxID = Shader.PropertyToID("_WorldToBox");
     private static readonly int BoxHalfSizeID = Shader.PropertyToID("_BoxHalfSize");
 
-    private MaterialPropertyBlock _block;
+    private MaterialPropertyBlock block;
     
     private void Awake()
     {
-        _block = new MaterialPropertyBlock();
+        block = new MaterialPropertyBlock();
     }
 
     private void LateUpdate()
@@ -26,10 +26,10 @@ public class RealityCrackBoxLimiter : MonoBehaviour
         {
             if (r == null) continue;
 
-            r.GetPropertyBlock(_block);
-            _block.SetMatrix(WorldToBoxID, worldToBox);
-            _block.SetVector(BoxHalfSizeID, halfSize);
-            r.SetPropertyBlock(_block);
+            r.GetPropertyBlock(block);
+            block.SetMatrix(WorldToBoxID, worldToBox);
+            block.SetVector(BoxHalfSizeID, halfSize);
+            r.SetPropertyBlock(block);
         }
     }
 }

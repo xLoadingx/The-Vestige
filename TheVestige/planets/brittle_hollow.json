@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/body_schema.json",
+  "name": "BRITTLE_HOLLOW",
+  "ShipLog": {
+    "xmlFile": "planets/BRITTLE_HOLLOW_ShipLog.xml"
+  },
+  "Props": {
+    "dialogue": [
+      {
+        "pathToExistingDialogue": "Sector_BH/Sector_Crossroads/Characters_Crossroads/Traveller_HEA_Riebeck/ConversationZone_Riebeck",
+        "xmlFile": "planets/Riebeck_Dialogue.xml"
+      }
+    ]
+  }
+}

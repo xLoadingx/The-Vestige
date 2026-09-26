@@ -1,20 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using OWML.Common;
 using OWML.ModHelper;
+using TheVestige.Scripts.Modules;
 using UnityEngine;
 
 namespace TheVestige.Scripts;
 
+public static class Log
+{
+    public const bool DEBUG = true;
+
+    public static void Info(string msg, bool debug = true)
+    {
+        if (!DEBUG && debug)
+            return;
+        
+        TheVestige.Instance.ModHelper.Console.WriteLine(msg, MessageType.Info);
+    } 
+    
+    public static void Warning(string msg, bool debug = true)
+    {
+        if (!DEBUG && debug)
+            return;
+        
+        TheVestige.Instance.ModHelper.Console.WriteLine(msg, MessageType.Warning);
+    }
+
+    public static void Error(string msg, bool debug = true)
+    {
+        if (!DEBUG && debug)
+            return;
+        
+        TheVestige.Instance.ModHelper.Console.WriteLine(msg, MessageType.Error);
+    }
+}
+
 public class TheVestige : ModBehaviour
 {
     public static TheVestige Instance;
+    
+    public static INewHorizons NewHorizons;
+    
+    // Modules
+    
+    public static GameObject ModuleParentGO;
+    
+    public static DataStreamModule dataStreamModule;
+    public static BundleModule bundleModule;
+    public static LocalizationModule localizationModule;
+    public static ContentModule contentModule;
+    
+    // Other
+    
+    public static bool AstralCodecInstalled;
 
-    public INewHorizons NewHorizons;
-
-    public void Awake() => Instance = this;
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     public void Start()
     {
@@ -22,87 +67,24 @@ public class TheVestige : ModBehaviour
 
         NewHorizons = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
         NewHorizons.LoadConfigs(this);
-
-        // Example of accessing game code.
-        OnCompleteSceneLoad(OWScene.TitleScreen, OWScene.TitleScreen);
-        LoadManager.OnCompleteSceneLoad += OnCompleteSceneLoad;
-    }
-
-    public void OnCompleteSceneLoad(OWScene previousScene, OWScene newScene)
-    {
-        if (newScene != OWScene.SolarSystem) return;
-        ModHelper.Console.WriteLine("Loaded into solar system!", MessageType.Success);
         
-        OWMaterialFix.RecacheMaterials();
+        AstralCodecInstalled = NewHorizons.GetInstalledAddons().Contains("Walker.AstralCodex");
         
-       SpawnTest();
-    }
+        // Module Init
 
-    private AssetBundle LoadEmbeddedBundle(string bundleName)
-    {
-        string resourceName = "TheVestige.Resources." + bundleName; 
-        using var stream = typeof(TheVestige).Assembly.GetManifestResourceStream(resourceName);
-
-        if (stream == null)
-        {
-            ModHelper.Console.WriteLine($"Missing embedded bundle: {resourceName}", MessageType.Error);
-
-            foreach (string resource in typeof(TheVestige).Assembly.GetManifestResourceNames())
-                ModHelper.Console.WriteLine($"Embedded resource: {resource}");
-
-            return null;
-        }
+        ModuleParentGO ??= new GameObject("[The Vestige] Modules");
+        DontDestroyOnLoad(ModuleParentGO);
         
-        byte[] bundleData = new byte[stream.Length];
-        stream.Read(bundleData, 0, bundleData.Length);
-
-        var bundle = AssetBundle.LoadFromMemory(bundleData);
-
-        if (bundle == null)
-            ModHelper.Console.WriteLine($"Failed to load AssetBundle: {resourceName}", MessageType.Error);
-
-        return bundle;
-    }
-
-    private void SpawnTest()
-    {
-        var timberHearth = Locator.GetAstroObject(AstroObject.Name.TimberHearth);
-
-        var bundle = LoadEmbeddedBundle("timelineendtest");
+        bundleModule ??= new GameObject("Bundle Module").AddComponent<BundleModule>();
+        localizationModule ??= new GameObject("Localization Module").AddComponent<LocalizationModule>();
+        dataStreamModule ??= new GameObject("Data Stream Module").AddComponent<DataStreamModule>();
+        contentModule ??= new GameObject("Solar System Module").AddComponent<ContentModule>();
         
-        var prefab = bundle.LoadAsset<GameObject>("Paradox_Sphere");
-        var obj = Instantiate(prefab, timberHearth.transform.Find("Sector_TH/Sector_Village/Interactables_Village/LaunchTower"));
+        dataStreamModule.transform.SetParent(ModuleParentGO.transform);
+        bundleModule.transform.SetParent(ModuleParentGO.transform);
+        localizationModule.transform.SetParent(ModuleParentGO.transform);
+        contentModule.transform.SetParent(ModuleParentGO.transform);
         
-        obj.FixMaterials();
-        obj.transform.localPosition = new Vector3(-4.1031f, -0.8293f, 11.9366f);
-        obj.transform.localRotation = Quaternion.identity;
-
-        var comp = obj.AddComponent<TimelineObliterationTest>();
-        
-        comp.voidCrackEffectList = obj.GetComponentsInChildren<TimelineObliterationEffect>();
-        comp.voidCrackAudioSource = obj.GetComponentInChildren<OWAudioSource>();
-        comp.targetObject = obj.GetComponent<VoidShadowEffectController>();
-        comp.voidShadowEffect = comp.targetObject;
-        var fillRoomObj = obj.transform.Find("TV_Room_ParadoxFill").gameObject;
-        comp.fillRoomMaterial = fillRoomObj.GetComponent<MeshRenderer>().material;
-        comp.fillRoomClip = bundle.LoadAsset<AudioClip>("TV_FabricSFX_FillRoom_Muffled");
-
-        var limiter = obj.transform.Find("Room_Volume").gameObject.AddComponent<RealityCrackBoxLimiter>();
-        
-        var renderers = new List<Renderer>();
-        renderers.AddRange(obj.transform.Find("Effects_TV_TimelineCracksGroup").gameObject.GetComponentsInChildren<Renderer>());
-        renderers.Add(fillRoomObj.GetComponent<Renderer>());
-        limiter.voidCrackRenderers = renderers.ToArray();
-
-        comp.limiter = limiter;
-        
-        // obj.GetComponentInChildren<AudioSignal>()._name = Patches.CustomSignals.QuantumShardSignal;
-        
-        // if (obj != null)
-        // {
-        //     DialogueConditionManager.SharedInstance.SetConditionState("TV_SLATE_SCARED_OF_ROCKS", true); 
-        // }
-        
-        bundle.Unload(false);
+        // -----------
     }
 }

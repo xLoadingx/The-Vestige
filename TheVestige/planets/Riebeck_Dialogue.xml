@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DialogueTree>
+	<NameField>Riebeck</NameField>
+	<DialogueNode>
+		<Name>Questions</Name>
+		<DialogueOptionsList>
+			<DialogueOption>
+				<RequiredPersistentCondition>TH_READQUANTUMPLACARD</RequiredPersistentCondition>
+				<Text>Have you heard that strange signal?</Text>
+				<DialogueTarget>RiebeckSignal</DialogueTarget>
+			</DialogueOption>
+		</DialogueOptionsList>
+	</DialogueNode>
+	<DialogueNode>
+		<Name>RiebeckSignal</Name>
+		<Dialogue>
+			<Page>Oh! You heard that too?</Page>
+			<Page>I remember hearing about that back when I was a hatchling. I thought it must have been coming from the quantum shard here on Brittle Hollow.</Page>
+			<Page>Only... if that were true, I'd expect it to sound like the others. There must be another one somewhere.</Page>
+			<Page>I was planning to look into it once I got here, but then I found the Hanging City, and, well... there's a lot of history down there.</Page>
+			<Page>Also a black hole. That part does make exploring a little more complicated.</Page>
+		</Dialogue>
+		<RevealFacts><FactID>BH_RIEBECK_QUANTUMVARIATION</FactID></RevealFacts>
+		<DialogueTarget>Questions</DialogueTarget>
+	</DialogueNode>
+</DialogueTree>

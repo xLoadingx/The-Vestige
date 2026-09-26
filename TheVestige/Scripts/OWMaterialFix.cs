@@ -1,5 +1,4 @@
 using System.Linq;
-using OWML.Common;
 using UnityEngine;
 
 namespace TheVestige.Scripts;
@@ -21,14 +20,13 @@ public static class OWMaterialFix
         {
             var fixedMats = renderer.sharedMaterials;
 
-            for (int i = 0; i < fixedMats.Length; i++)
+            foreach (var oldMat in fixedMats)
             {
-                var oldMat = fixedMats[i];
                 if (oldMat == null) continue;
 
                 var runtimeMaterial = FindRuntimeVariant(oldMat.shader.name);
                 if (runtimeMaterial != null)
-                    fixedMats[i].shader = runtimeMaterial.shader;
+                    oldMat.shader = runtimeMaterial.shader;
             }
 
             renderer.sharedMaterials = fixedMats;

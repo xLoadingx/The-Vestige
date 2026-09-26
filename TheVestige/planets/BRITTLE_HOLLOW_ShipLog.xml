@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AstroObjectEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" noNamespaceSchemaLocation="https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/shiplog_schema.xsd">
+	<ID>BRITTLE_HOLLOW</ID>
+	<Entry>
+		<ID>TV_QUANTUM_VARIATION</ID>
+		<Name>Quantum Variation</Name>
+		<Curiosity>TV_LOW_LIGHT_OBSERVATION_CHAMBER</Curiosity>
+		<ExploreFact>
+			<ID>BH_RIEBECK_QUANTUMVARIATION</ID>
+			<Text>Riebeck heard about the strange signal from Brittle Hollow when they were a hatchling. They thought it came from the quantum shard already on the planet, but now think there must be another one somewhere.</Text>
+		</ExploreFact>
+	</Entry>
+</AstroObjectEntry>

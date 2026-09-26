@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AstroObjectEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" noNamespaceSchemaLocation="https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/shiplog_schema.xsd">
+	<ID>CAVE_TWIN</ID>
+	<Entry>
+		<ID>TV_LOW_LIGHT_OBSERVATION_CHAMBER</ID>
+		<Name>Low-Light Observation Chamber</Name>
+		<IsCuriosity />
+	</Entry>
+</AstroObjectEntry>

@@ -1,3 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/addon_manifest_schema.json"
+    "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/addon_manifest_schema.json",
+    "popupMessage": "Thank you for downloading The Vestige!\n\nA new mystery begins where young Hearthians first learn of quantum things.",
+    "repeatPopup": true
 }

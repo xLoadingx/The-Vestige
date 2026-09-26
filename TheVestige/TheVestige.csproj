@@ -22,6 +22,12 @@
         <None Include="manifest.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Update="planets\ember_twin.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="planets\Audio\TV_QuantumSignal.ogg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <Content Include="TheVestige.csproj.user"/>
@@ -45,11 +51,20 @@
         <None Include="title-screen.json" Condition="Exists('title-screen.json')">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Include="Resources\**\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="Text Assets\**\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
       <None Remove="Resources\quantumshardthing" />
-      <EmbeddedResource Include="Resources\quantumshardthing" />
       <None Remove="Resources\timelineendtest" />
-      <EmbeddedResource Include="Resources\timelineendtest" />
+      <None Remove="Resources\nomaigatewaytest" />
+      <None Remove="Resources\void" />
     </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;$(UnityDllsDir)&quot;" />
+    </Target>
 </Project>
