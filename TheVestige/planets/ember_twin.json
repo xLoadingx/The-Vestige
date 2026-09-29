@@ -2,6 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/xen-42/outer-wilds-new-horizons/main/NewHorizons/Schemas/body_schema.json",
   "name": "CAVE_TWIN",
   "ShipLog": {
-    "xmlFile": "planets/EMBER_TWIN_ShipLog.xml"
+    "xmlFile": "planets/Text Assets/EMBER_TWIN_ShipLog.xml"
   }
 }

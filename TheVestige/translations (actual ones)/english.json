@@ -1,0 +1,14 @@
+{
+  "NOM_LOC_Computer_NTI:1": "\n\t\t    LOW-LIGHT OBSERVATION CHAMBER\\\\nExperiment status: READY\n\t\t",
+  "NOM_LOC_Computer_NTI:2": "\n\t\t    Observation window is closing.\\\\nPlease ensure all external observers have ceased before future information is recorded.\n\t\t",
+  "NOM_LOC_Computer_NTI:3": "\n\t\t    Future observation received.\\\\nPredicted state result: <FutureState>\\\\nAwaiting present state\\\\nIN <SecondsUntilPresent> SECONDS\n\t\t",
+  "NOM_LOC_Computer_NTI:4": "\n\t\t    Present observation received.\\\\nResult: NO CONFLICT DETECTED\\\\nRepeat test multiple times to confirm transfer accuracy.\n\t\t",
+  "NOM_LOC_Computer_NTI:5": "\n\t\t    Present observation received.\\\\nResult: CONFLICT DETECTED\\\\nPredicted state and present state do not agree.\\\\nPresent State: <PresentState>\\\\nPredicted State: <FutureState>\n\t\t",
+  "Arc_QuAC_ConstructionYard:1": "CASSAVA: Hello from the <color=orange>Construction Yard</color>, my love (and Phlox)! I must say that we have found something quite extraordinary when attempting to launch a component of the <color=orange>Orbital Probe Cannon</color>.",
+  "Arc_QuAC_ConstructionYard:4": "PHLOX: Might I also add that we have observed a peculiar phenomenon with the surface of the <color=lightblue>Quantum Moon</color> whilst in orbit around <color=lightblue>Giant's Deep</color>?",
+  "Arc_QuAC_ConstructionYard:3": "DAZ: I'd like to see it, love! I believe we are almost done collecting all the quantum material needed for starting the construction of the memory statues. I will meet you at the <color=orange>Statue Workshop</color> later to test its malleability.",
+  "Arc_QuAC_ConstructionYard:2": "CASSAVA: It seems as if this piece launched <i>below</i> the current of <color=lightblue>Giant's Deep</color>. We have not observed this effect before, we should study it!",
+  "Arc_QuAC_ConstructionYard:5": "DAZ: (Do tell the children that they cannot enter).",
+  "Arc_QuAC_ConstructionYard:6": "PHLOX: It seems the <color=lightblue>Quantum Moon</color> reproduces the electrical core found under the current but does not contain the current itself. Perhaps this could allow us to study these effects closer to the core of the planet than the current allows?",
+  "Arc_QuAC_ConstructionYard:7": "CASSAVA: The <color=lightblue>Quantum Moon's</color> surface does not perfectly copy the planet it is in orbit around. I find that this source of research would not be reliable."
+}

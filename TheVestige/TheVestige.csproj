@@ -28,6 +28,18 @@
         <None Update="planets\Audio\TV_QuantumSignal.ogg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Update="planets\Text Assets\BRITTLE_HOLLOW_ShipLog.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="planets\Text Assets\EMBER_TWIN_ShipLog.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="planets\Text Assets\Riebeck_Dialogue.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="translations (actual ones)\english.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <Content Include="TheVestige.csproj.user"/>

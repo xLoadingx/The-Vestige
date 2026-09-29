@@ -26,7 +26,7 @@ public class BundleModule : MonoBehaviour
         
         // Modification streams
         
-        localizationModule.RegisterNomaiText(bundle);
+        localizationModule.RegisterLocalizationFrom(bundle);
         
         // --------------------
         
