@@ -51,6 +51,7 @@ public class TheVestige : ModBehaviour
     public static BundleModule bundleModule;
     public static LocalizationModule localizationModule;
     public static ContentModule contentModule;
+    public static EyeStateModule eyeStateModule;
     
     // Other
     
@@ -78,12 +79,27 @@ public class TheVestige : ModBehaviour
         bundleModule ??= new GameObject("Bundle Module").AddComponent<BundleModule>();
         localizationModule ??= new GameObject("Localization Module").AddComponent<LocalizationModule>();
         dataStreamModule ??= new GameObject("Data Stream Module").AddComponent<DataStreamModule>();
-        contentModule ??= new GameObject("Solar System Module").AddComponent<ContentModule>();
+        contentModule ??= new GameObject("Content Module").AddComponent<ContentModule>();
+        eyeStateModule ??= new GameObject("Eye State Module").AddComponent<EyeStateModule>();
         
         dataStreamModule.transform.SetParent(ModuleParentGO.transform);
         bundleModule.transform.SetParent(ModuleParentGO.transform);
         localizationModule.transform.SetParent(ModuleParentGO.transform);
         contentModule.transform.SetParent(ModuleParentGO.transform);
+        eyeStateModule.transform.SetParent(ModuleParentGO.transform);
+        
+        // Hooks
+        
+        NewHorizons.GetStarSystemLoadedEvent().AddListener((starSystem) =>
+        {
+            OWMaterialFix.RecacheMaterials();
+            
+            contentModule.OnStarSystemLoaded(starSystem);
+            dataStreamModule.OnStarSystemLoaded(starSystem);
+            localizationModule.OnStarSystemLoaded(starSystem);
+            eyeStateModule.OnStarSystemLoaded(starSystem);
+            eyeStateModule.ResetState();
+        });
         
         // -----------
     }

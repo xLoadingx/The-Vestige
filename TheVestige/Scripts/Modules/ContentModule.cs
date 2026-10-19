@@ -11,19 +11,8 @@ public class ContentModule : MonoBehaviour
     private AssetBundle _brittleHollowBundle;
     private AssetBundle _LOCBundle;
 
-    private void Start()
+    private void Awake()
     {
-        // Hooks
-        
-        NewHorizons.GetStarSystemLoadedEvent().AddListener((starSystem) =>
-        {
-            OWMaterialFix.RecacheMaterials();
-            
-            OnStarSystemLoaded(starSystem);
-            dataStreamModule.OnStarSystemLoaded(starSystem);
-            localizationModule.OnStarSystemLoaded(starSystem);
-        });
-        
         NewHorizons.GetAllTitleScreensLoadedEvent().AddListener(dataStreamModule.OnTitleScreenLoaded);
         
         // Bundle loading
@@ -33,7 +22,7 @@ public class ContentModule : MonoBehaviour
         _LOCBundle = bundleModule.Load("low_light_observation_chamber");
     }
 
-    private void OnStarSystemLoaded(string systemName)
+    public void OnStarSystemLoaded(string systemName)
     {
         if (systemName != "SolarSystem")
             return;

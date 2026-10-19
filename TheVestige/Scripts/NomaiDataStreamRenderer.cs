@@ -7,7 +7,6 @@ public class NomaiDataStreamRenderer : MonoBehaviour
 {
     private Renderer _renderer;
     private MaterialPropertyBlock _block;
-    private bool _reversed = false;
     
     public Transform[] objects;
 
@@ -116,7 +115,6 @@ public class NomaiDataStreamRenderer : MonoBehaviour
             {
                 _elapsedTime = 0.0f;
                 _isPulsing = false;
-                _reversed = false;
             }
         }
 

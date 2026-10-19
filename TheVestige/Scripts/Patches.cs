@@ -11,6 +11,7 @@ public class Patches
 
     public static HashSet<string> _shipLogFactIDs = [];
 
+    // Data Stream Fire Delay
     [HarmonyPatch(typeof(OrbitalProbeLaunchController), nameof(OrbitalProbeLaunchController.OnStartOfTimeLoop))]
     public static class OPCController_OnStartOfTimeLoop_Patch
     {
@@ -19,7 +20,8 @@ public class Patches
             __instance._probeLaunchTime = Time.time + OPCFireDelay;
         }
     }
-
+    
+    /// Overrides NH translations with my own localization module
     [HarmonyPatch(typeof(ShipLogFact), nameof(ShipLogFact.GetText))]
     public static class ShipLogFact_GetText_Patch
     {
